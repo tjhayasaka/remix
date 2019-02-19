@@ -26,7 +26,7 @@ defmodule Remix do
     end
 
     def handle_info(:poll_and_reload, state) do
-      paths = Application.get_all_env(:remix)[:paths]
+      paths = Application.get_all_env(:remix)[:paths] || ["lib"]
 
       new_state = Map.new paths, fn (path) ->
         current_mtime = get_current_mtime path
