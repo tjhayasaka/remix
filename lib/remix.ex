@@ -76,6 +76,10 @@ defmodule Remix do
         |> List.first
     end
 
+    def get_current_mtime([".#" <> _h | tail], mtimes, cwd) do
+      get_current_mtime(tail, mtimes, cwd)
+    end
+
     def get_current_mtime([h | tail], mtimes, cwd) do
       mtime = case File.dir?("#{cwd}/#{h}") do
         true  -> get_current_mtime("#{cwd}/#{h}")
