@@ -43,6 +43,8 @@ defmodule Remix do
 
     def handle_path(path, current_mtime, current_mtime), do: {path, current_mtime}
     def handle_path(path, current_mtime, _) do
+      IO.write("\n@@@\n\n")
+
       comp_elixir = fn -> Mix.Tasks.Compile.Elixir.run(["--ignore-module-conflict"]) end
       comp_escript = fn -> Mix.Tasks.Escript.Build.run([]) end
 
